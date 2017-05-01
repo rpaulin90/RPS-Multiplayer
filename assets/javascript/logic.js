@@ -13,234 +13,83 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
-var trainRef = database.ref().child("players");
-var trainRef1 = database.ref().child("players").child("player1");
-var trainRef2 = database.ref().child("players").child("player2");
+var playersRef = database.ref().child("players");
+var player1Ref = database.ref().child("players").child("1");
+var player2Ref = database.ref().child("players").child("2");
 
-// WE WILL USE A COUNTER VARIABLE TO KNOW HOW MANY PLAYERS ARE CURRENTLY SIGNED IN
 
-var game = {
+var playerNumber;
 
-    counter: 0,
+var namePlayer;
 
-    namePlayer1:"",
+// adding a new player
+var determinePlayer = function(){
 
-    namePlayer2:"",
+    database.ref().once("value",function(snapshot){
 
-    winsPlayer1: 0,
+        var numberOfPlayers = snapshot.child("players").numChildren();
 
-    lossesPlayer1: 0,
+        // chacking if there are no players connected yet
+        if(numberOfPlayers == 0){
 
-    winsPlayer2: 0,
+            playerNumber = 1;
 
-    lossesPlayer2: 0,
+            playersRef.child(playerNumber).set({
 
-    turn: 0
-}
+                name: namePlayer,
+                wins: 0,
+                losses: 0
 
-////////////////////////// NEW PLAYER INPUT/BUTTON ///////////////////////////////////
+            })
+
+        }
+
+        // checking if there is a #2 player but not #1
+        else if(numberOfPlayers == 1 && snapshot.child("players").val()[2] !== "undefined"){
+
+            playerNumber = 1;
+
+            playersRef.child(playerNumber).set({
+
+                name: namePlayer,
+                wins: 0,
+                losses: 0
+
+            })
+
+        }
+
+        else if(numberOfPlayers == 1){
+
+            playerNumber = 2;
+
+            playersRef.child(playerNumber).set({
+
+                name: namePlayer,
+                wins: 0,
+                losses: 0
+
+            })
+
+        }
+
+
+    })
+
+};
+
 
 $("#playerNameBtn").on("click",function(event){
 
     event.preventDefault();
 
-    if(game.counter === 1) {
+    namePlayer = $("#playerNameInpt").val();
 
-        game.counter++;
-
-        game.namePlayer2 = $("#playerNameInpt").val();
-
-        // var name2 = $("<div>");
-        //
-        // var options2 = $("<div>");
-        //
-        // var results2 = $("<div>");
-        //
-        // name2.addClass("name2Div");
-        //
-        // options2.addClass("options2Div");
-        //
-        // results2.addClass("results2Div");
-        //
-        // name2.text(game.namePlayer2);
-        //
-        // results2.text("wins: " + game.winsPlayer2 + " losses: " + game.lossesPlayer2);
-        //
-        // $("#player2Box").empty();
-        //
-        // $("#player2Box").append(name2);
-        //
-        //
-        // $("#player2Box").append(options2);
-        //
-        //
-        // $("#player2Box").append(results2);
-
-        trainRef.set ({
-
-            player1: {
-                name: game.namePlayer1,
-                losses: game.lossesPlayer1,
-                wins: game.winsPlayer1
-            },
-
-            player2: {
-                name: game.namePlayer2,
-                losses: game.lossesPlayer2,
-                wins: game.winsPlayer2
-            }
-
-        });
-
-        // trainRef.on("value", function(snapshot) {
-        //
-        //     var name2 = $("<div>");
-        //
-        //     var options2 = $("<div>");
-        //
-        //     var results2 = $("<div>");
-        //
-        //     name2.addClass("name2Div");
-        //
-        //     options2.addClass("options2Div");
-        //
-        //     results2.addClass("results2Div");
-        //
-        //     name2.text(snapshot.val().player2.name);
-        //
-        //     results2.text("wins: " + snapshot.val().player2.wins + " losses: " + snapshot.val().player2.losses);
-        //
-        //     $("#player2Box").empty();
-        //
-        //     $("#player2Box").append(name2);
-        //
-        //
-        //     $("#player2Box").append(options2);
-        //
-        //
-        //     $("#player2Box").append(results2);
-        //
-        // });
-
-        game.turn = 1;
-    }
-
-    if(game.counter === 0) {
-        game.counter++;
-
-        game.namePlayer1 = $("#playerNameInpt").val();
-
-        trainRef.set ({
-
-            player1: {
-                name: game.namePlayer1,
-                losses: game.lossesPlayer1,
-                wins: game.winsPlayer1
-            }
-
-        });
-
-    }
-
-    $("#playerNameInpt").val("");
+    determinePlayer();
 
 });
 
-////////////////////////// NEW PLAYER INPUT/BUTTON ///////////////////////////////////
-
-//////////////////////// CHECK FOR CHILD ADDED ///////////////////////////////////////
-
-    database.ref().on("value", function (snapshot) {
-
-        if(game.counter === 1) {
-
-            var name1 = $("<div>");
-
-            var options1 = $("<div>");
-
-            var results1 = $("<div>");
-
-            name1.addClass("name1Div");
-
-            options1.addClass("options1Div");
-
-            results1.addClass("results1Div");
-
-            console.log(snapshot.key);
-
-            name1.text(snapshot.val().players.player1.name);
-
-            results1.text("wins: " + snapshot.val().players.player1.wins + " losses: " + snapshot.val().players.player1.losses);
-
-            $("#player1Box").empty();
-
-            $("#player1Box").append(name1);
-
-
-            $("#player1Box").append(options1);
-
-
-            $("#player1Box").append(results1);
-
-        }
-
-
-
-    ////////////////////////////////////////////////////////
-
-    else if(game.counter === 2) {
-            var name2 = $("<div>");
-
-            var options2 = $("<div>");
-
-            var results2 = $("<div>");
-
-            name2.addClass("name2Div");
-
-            options2.addClass("options2Div");
-
-            results2.addClass("results2Div");
-
-            name2.text(snapshot.val().players.player2.name);
-
-            results2.text("wins: " + snapshot.val().players.player2.wins + " losses: " + snapshot.val().players.player2.losses);
-
-            $("#player2Box").empty();
-
-            $("#player2Box").append(name2);
-
-
-            $("#player2Box").append(options2);
-
-
-            $("#player2Box").append(results2);
-        }
-    });
 
 
 
 
-
-
-//////////////////////// CHECK FOR CHILD ADDED ///////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
-
-//////////////////////////////////// TURNS ///////////////////////////////////////////
-
-// if(game.turn === 1){
-//     $("#player1Box").html(
-//         "<div>" + $("#playerNameInpt").val() + "</div>"  +
-//         "<div> wins: " + game.winsPlayer1 + " losses: " + game.lossesPlayer1 + "  </div>"
-//     );
-// }
