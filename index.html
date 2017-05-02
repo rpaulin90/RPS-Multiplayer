@@ -13,7 +13,8 @@
     <h1>Rock Paper Scissors</h1>
 
     <div id="topDiv">
-        <div>
+        <div id="messageDiv"></div>
+        <div id="nameInputDiv">
             <input type="text" placeholder="Name" id="playerNameInpt">
             <button type="submit" id="playerNameBtn">Submit</button>
         </div>
@@ -21,19 +22,37 @@
 
 
      <div class="row">
-        <div id="player1Box" class="middleBoxes col-xs-4"><div>waiting for player 1</div> </div>
+        <div class="middleBoxes col-xs-4">
+            <div id="player1BoxName">waiting for player 1 to join</div>
+            <div id="status1"></div>
+            <div id="options1" style="display: none">
+                <button class="rock">Rock</button>
+                <button class="paper">Paper</button>
+                <button class="scissors">Scissors</button>
+            </div>
+            <div id="results1"></div>
+        </div>
 
         <div id="winningBox" class="middleBoxes col-xs-4"></div>
 
-        <div id="player2Box" class="middleBoxes col-xs-4"> <div>waiting for player 2</div> </div>
+        <div class="middleBoxes col-xs-4">
+            <div id="player2BoxName">waiting for player 2 to join</div>
+            <div id="status2"></div>
+            <div id="options2" style="display: none">
+                <button class="rock">Rock</button>
+                <button class="paper">Paper</button>
+                <button class="scissors">Scissors</button>
+            </div>
+            <div id="results2"></div>
+        </div>
      </div>
 
-    <div id="chat" class="row">
-        some abuse...
+    <div class="row">
+        <div id="chat" class="col-xs-12"></div>
     </div>
      <div class="row">
-        <input type="text" placeholder="Type some abuse">
-        <button type="submit"></button>
+        <input type="text" placeholder="Type some abuse" id="chatInput">
+        <button type="submit" id="chatBtn"></button>
      </div>
  </div>
 
