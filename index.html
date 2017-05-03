@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata|Signika" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/styles.css">
@@ -14,10 +16,12 @@
 
     <div id="topDiv">
         <div id="messageDiv"></div>
-        <div id="nameInputDiv">
-            <input type="text" placeholder="Name" id="playerNameInpt">
-            <button type="submit" id="playerNameBtn">Submit</button>
-        </div>
+        <form class="form-inline">
+            <div id="nameInputDiv">
+                <input type="text" placeholder="Name" id="playerNameInpt" class="form-control mb-2 mr-sm-2 mb-sm-0">
+                <button type="submit" id="playerNameBtn" class="btn btn-primary">Enter Name</button>
+            </div>
+        </form>
     </div>
 
 
@@ -26,9 +30,9 @@
             <div id="player1BoxName">waiting for player 1 to join</div>
             <div id="status1"></div>
             <div id="options1" style="display: none">
-                <button class="rock">Rock</button>
-                <button class="paper">Paper</button>
-                <button class="scissors">Scissors</button>
+                <a class="rock"><img src="assets/images/rock.png" alt="rock"></a>
+                <a class="paper"><img src="assets/images/paper.png" alt="paper"></a>
+                <a class="scissors"><img src="assets/images/scissors.png" alt="scissors"></a>
             </div>
             <div id="results1"></div>
         </div>
@@ -39,22 +43,24 @@
             <div id="player2BoxName">waiting for player 2 to join</div>
             <div id="status2"></div>
             <div id="options2" style="display: none">
-                <button class="rock">Rock</button>
-                <button class="paper">Paper</button>
-                <button class="scissors">Scissors</button>
+                <a class="rock"><img src="assets/images/rock.png" alt="rock"></a>
+                <a class="paper"><img src="assets/images/paper.png" alt="paper"></a>
+                <a class="scissors"><img src="assets/images/scissors.png" alt="scissors"></a>
             </div>
             <div id="results2"></div>
         </div>
      </div>
 
     <div class="row">
+        <label>Chat Section</label>
         <div id="chat" class="col-xs-12"></div>
     </div>
-     <div class="row">
-        <input type="text" placeholder="Type some abuse" id="chatInput">
-        <button type="submit" id="chatBtn"></button>
-     </div>
+        <div class="form-group">
+            <textarea class="form-control" id="chatInput" rows="3" placeholder="Type some abuse"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" id="chatBtn">Send Message</button>
  </div>
+
 
 
 <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>

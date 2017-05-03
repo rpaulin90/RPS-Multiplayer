@@ -38,6 +38,7 @@ var name2;
 var tie = false;
 
 turnRef.onDisconnect().remove();
+database.ref().child("chat").onDisconnect().remove();
 
 playersRef.on("child_added",function(snapshot){
 
@@ -89,11 +90,14 @@ turnRef.on("value",function(snapshot){
             // show options to player 1
             $("#messageDiv").text("make your pick");
             $("#status1").text("choose an option below");
+            $("#status2").empty();
             $("#options1").css("display", "block");
 
         }else if(playerNumber === 2){
             // player 2 waits for player 1 to choose
             $("#messageDiv").text("waiting for player 1 to choose");
+            $("#status1").empty();
+            $("#status2").empty();
         }
     }
 
@@ -109,6 +113,7 @@ turnRef.on("value",function(snapshot){
         }else if(playerNumber === 1){
             // player 2 waits for player 1 to choose
             $("#options1").css("display", "none");
+            $("#status1").empty();
             $("#messageDiv").text("waiting for player 2 to choose");
         }
     }
@@ -121,7 +126,7 @@ turnRef.on("value",function(snapshot){
 
         setTimeout(function(){
             turnRef.set(1);
-        },3000);
+        },5000);
         // compute results
         // show results for a few seconds
         // empty results div
@@ -362,8 +367,11 @@ var determineWinner = function(){
             winnerName = "It's a tie"
         }
 
-        $("#status1").text(choice1);
-        $("#status2").text(choice2);
+        var img1 = $("<img>").attr("src","assets/images/"+ choice1 + ".png");
+        var img2 = $("<img>").attr("src","assets/images/"+ choice2 + ".png");
+
+        $("#status1").html(img1);
+        $("#status2").html(img2);
 
         if(tie === true){
             $("#winningBox").html(winnerName);
@@ -381,12 +389,27 @@ $("#chatBtn").on("click",function(){
 
     $("#chatInput").val("");
 
-    var newMessage = $("<p>").html(namePlayer + ": " + message);
+    if(namePlayer == undefined){
+
+        database.ref().child("chat").push({
+            message: "Outsider: " + message
+        });
+
+    }else{
+        database.ref().child("chat").push({
+            message: namePlayer + ": " + message
+        });
+    }
+
+});
+
+database.ref().child("chat").orderByKey().on("child_added",function(snapshot) {
+
+    var newMessage = $("<p>").html(snapshot.val().message);
 
     $("#chat").append(newMessage);
 
 });
-
 
 
 

@@ -4,12 +4,172 @@
 
 }
 
+img {
+    width: 70px;
+    margin: 5px;
+}
+
+body {
+    background-image: url("../images/linedpaper.png");
+    font-family: 'Signika', sans-serif;
+}
+
 #chat {
     overflow: auto;
-    width: 400px;
     height: 200px;
     background-color: #1e1e1e;
     color: #fff;
     text-align: left;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    opacity: .6;
+    border-radius: 15px;
+    font-family: 'Inconsolata', monospace;
+    border: 5px white dotted;
 }
 
+#playerNameInpt {
+    margin-bottom: 10px;
+}
+
+#playerNameBtn {
+    margin-bottom: 10px;
+}
+
+#status1 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#status2 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#results1 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#results2 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#winningBox {
+    color: #a31413;
+}
+
+@media screen and (max-width: 1280px) {
+    #player1BoxName {
+        font-size: 25px;
+    }
+
+    #player2BoxName {
+        font-size: 25px;
+    }
+
+    #status1 {
+        font-size: 20px;
+    }
+
+    #status2 {
+        font-size: 20px;
+    }
+
+    #results1 {
+        font-size: 20px;
+    }
+
+    #results2 {
+        font-size: 20px;
+    }
+
+    img {
+        width: 70px;
+    }
+
+    #messageDiv {
+        font-size: 20px;
+    }
+
+    #winningBox {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    #player1BoxName {
+        font-size: 18px;
+    }
+
+    #player2BoxName {
+        font-size: 18px;
+    }
+
+    #status1 {
+        font-size: 16px;
+    }
+
+    #status2 {
+        font-size: 16px;
+    }
+
+    #results1 {
+        font-size: 16px;
+    }
+
+    #results2 {
+        font-size: 16px;
+    }
+
+    img {
+        width: 43px;
+    }
+
+    #messageDiv {
+        font-size: 18px;
+    }
+
+    #winningBox {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    #player1BoxName {
+        font-size: 14px;
+    }
+
+    #player2BoxName {
+        font-size: 14px;
+    }
+
+    #status1 {
+        font-size: 10px;
+    }
+
+    #status2 {
+        font-size: 10px;
+    }
+
+    #results1 {
+        font-size: 10px;
+    }
+
+    #results2 {
+        font-size: 10px;
+    }
+
+    img {
+        width: 21px;
+    }
+
+    #messageDiv {
+        font-size: 14px;
+    }
+
+    #winningBox {
+        font-size: 14px;
+    }
+}
