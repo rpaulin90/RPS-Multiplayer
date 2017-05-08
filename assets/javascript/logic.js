@@ -3,10 +3,10 @@
  */
 
 var config = {
-    apiKey: "AIzaSyAJS4YQWU5DmESeYueG1qH1NGkjv3DncEY",
-    authDomain: "fir-click-counter-7cdb9.firebaseapp.com",
-    databaseURL: "https://rps-multiplayer-f3977.firebaseio.com/",
-    storageBucket: "rps-multiplayer-f3977"
+    apiKey: "AIzaSyDK5-a709bS7X-Jj__PlGaH5wxUMvlq4Rc",
+    authDomain: "rps-multiplayer-6a7de.firebaseapp.com",
+    databaseURL: "https://rps-multiplayer-6a7de.firebaseio.com/",
+    storageBucket: "rps-multiplayer-6a7de"
 };
 
 firebase.initializeApp(config);
