@@ -4,6 +4,6 @@ This web application is a rock-paper-scissors multiplayer game. It only enables 
 
 Once a user leaves the page, he/she is immediately disconnected and another user can join the game.
 
-This application was made in oreder to learn more about Firebase's database features.
+This application was made in order to learn more about Firebase's database features.
 
 <img width="960" alt="screen shot 2017-05-22 at 4 05 34 pm" src="https://cloud.githubusercontent.com/assets/23643322/26328413/896db33e-3f08-11e7-85dc-265b10fc0eca.png">
